@@ -153,4 +153,10 @@ function actions.select_last(ui)
 end
 
 -- we add reverse lookup so that we can easily get the names of actions
-return vim.tbl_add_reverse_lookup(actions)
+local keys = vim.tbl_keys(actions)
+for _, k in ipairs(keys) do
+  local v = actions[k]
+  actions[v] = k
+end
+return actions
+
